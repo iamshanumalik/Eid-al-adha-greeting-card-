@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid al Adha Mubarak</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@latest/dist/fireworks.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000000;
+            color: #ccd6f6; 
+            margin: 0;
+            padding: 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh; 
+            box-sizing: border-box;
+            text-align: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .container {
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(5px); 
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            width: 90%;
+            z-index: 1;
+            margin: 20px; 
+            position: relative; 
+        }
+
+        .eid-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 3px solid #64ffda; 
+        }
+
+        .greeting-message {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #e6f1ff; 
+        }
+
+        .urdu-greeting {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1.5em;
+            direction: rtl;
+            margin-bottom: 25px;
+            color: #e6f1ff; 
+        }
+
+        .name-input-box {
+            margin-bottom: 20px;
+        }
+
+        .name-input-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #8892b0; 
+        }
+
+        .name-input {
+            width: calc(100% - 24px); 
+            padding: 12px;
+            border: 1px solid #495670;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #13223b; 
+            color: #ccd6f6; 
+        }
+
+        .name-input::placeholder {
+            font-family: 'Noto Nastaliq Urdu', 'Roboto', sans-serif;
+            color: #6a7c9b; 
+        }
+
+        .share-button {
+            display: inline-block;
+            background-color: #25D366; 
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .share-button:hover {
+            background-color: #1EBE57;
+        }
+
+        .sender-name-display {
+            font-weight: bold;
+            color: #64ffda; 
+        }
+
+        #fireworks-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body onclick="document.getElementById('bg-song').play()">
+    
+    <!-- 🔊 Hidden Eid Mubarak Song -->
+    <audio id="bg-song" autoplay loop hidden>
+        <source src="eid mubarak song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="fireworks-canvas"></div>
+
+    <div class="container">
+        <img src="eid al adha.png" alt="Eid al Adha Mubarak" class="eid-image">
+
+        <p class="greeting-message">
+            From <span class="sender-name-display" id="displayedSenderNameEn">Your Friend</span>, wishing you and your family Eid al Adha Mubarak!
+        </p>
+
+        <p class="urdu-greeting" dir="rtl">
+            <span class="sender-name-display" id="displayedSenderNameUr">آپکے دوست</span> کی طرف سے آپکو اور آپکی فیملی کو عید الاضحٰی مبارک ہو!
+        </p>
+
+        <div class="name-input-box">
+            <label for="sharerNameInput">اپنا نام لکھیں (تاکہ آپکی طرف سے مبارکباد جائے) / Enter your name (to send greetings from you):</label>
+            <input type="text" id="sharerNameInput" class="name-input" placeholder="یہاں اپنا نام لکھیں / Type your name here">
+        </div>
+
+        <a href="#" id="whatsappShareLink" class="share-button" target="_blank">
+            Share on WhatsApp
+        </a>
+    </div>
+
+    <!-- 📢 Adsterra Ad (Bottom of Page) -->
+    <div style="margin: 30px 0; text-align: center;">
+        <script async="async" data-cfasync="false" src="//pl26835417.profitableratecpm.com/a31fe3522017e4f132978fd96973a81d/invoke.js"></script>
+        <div id="container-a31fe3522017e4f132978fd96973a81d"></div>
+    </div>
+
+    <script>
+        const pageOwnerNameEn = "Your Friend"; 
+        const pageOwnerNameUr = "آپکے دوست";  
+
+        const sharerNameInputElement = document.getElementById('sharerNameInput');
+        const displayedSenderNameEnElement = document.getElementById('displayedSenderNameEn');
+        const displayedSenderNameUrElement = document.getElementById('displayedSenderNameUr');
+        const whatsappShareLinkElement = document.getElementById('whatsappShareLink');
+
+        function getUrlParameter(name) {
+            name = name.replace(/[]/, '\').replace(/[]/, '\');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function generateShareLink() {
+            let sharerNameFromInput = sharerNameInputElement.value.trim();
+            let nameForShareMessageEn = sharerNameFromInput || "A Friend";
+            let nameForShareMessageUr = sharerNameFromInput || "ایک دوست";
+            let pageUrl = window.location.origin + window.location.pathname;
+            let personalizedUrl = pageUrl;
+            if (sharerNameFromInput) {
+                personalizedUrl += '?name=' + encodeURIComponent(sharerNameFromInput);
+            }
+            const greetingTextEn = `From ${nameForShareMessageEn}, wishing you and your family Eid al Adha Mubarak!`;
+            const greetingTextUr = `${nameForShareMessageUr} کی طرف سے آپکو اور آپکی فیملی کو عید الاضحٰی مبارک ہو!`;
+            const shareMessage = `${greetingTextEn}\n${greetingTextUr}\n\nCheck out this Eid greeting: ${personalizedUrl}`;
+            whatsappShareLinkElement.href = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+        }
+
+        window.onload = function() {
+            const nameFromUrl = getUrlParameter('name');
+            if (nameFromUrl) {
+                displayedSenderNameEnElement.textContent = nameFromUrl;
+                displayedSenderNameUrElement.textContent = nameFromUrl;
+            } else {
+                displayedSenderNameEnElement.textContent = pageOwnerNameEn;
+                displayedSenderNameUrElement.textContent = pageOwnerNameUr;
+            }
+            generateShareLink();
+
+            const fireworksContainer = document.getElementById('fireworks-canvas');
+            if (!fireworksContainer || typeof Fireworks === 'undefined') return;
+
+            const fireworks = new Fireworks(fireworksContainer, { 
+                rocketsPoint: { min: 0, max: 100 },
+                hue: { min: 0, max: 360 },
+                delay: { min: 40, max: 80 },
+                speed: 2,
+                acceleration: 1.03, 
+                friction: 0.97,
+                gravity: 1.2,     
+                particles: 50,    
+                flickering: 30,   
+                intensity: 45,    
+                traceSpeed: 2.5,
+                traceLength: 2.5,  
+                explosion: 5,     
+                autoresize: true,
+                brightness: {
+                    min: 50,
+                    max: 75,      
+                    decay: {
+                        min: 0.015, 
+                        max: 0.03
+                    }
+                },
+                sound: { enabled: false },
+                mouse: { click: false, move: false, max: 1 }
+            });
+            fireworks.start();
+        };
+
+        sharerNameInputElement.addEventListener('input', generateShareLink);
+    </script>
+
+</body>
+</html>
